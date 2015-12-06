@@ -13,4 +13,5 @@ deployment:
     commands:
       - wget -q https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2
       - tar jxvf linux-amd64-github-release.tar.bz2
+      - ./bin/linux/amd64/github-release release --user yuya-oc --repo test-github --tag $CIRCLE_TAG --draft
       - ./bin/linux/amd64/github-release upload --user yuya-oc --repo test-github --tag $CIRCLE_TAG --name "main.tar.gz" --file $CIRCLE_ARTIFACTS/main.tar.gz
