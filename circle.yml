@@ -1,0 +1,8 @@
+dependencies:
+  post:
+    - g++ main.cpp -o main
+    - tar zcvf /$CIRCLE_ARTIFACTS/main.tar.gz main
+
+test:
+  override:
+    - ./main
