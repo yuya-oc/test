@@ -1,0 +1,10 @@
+version: 1.0.{build}
+build_script:
+- cmd: >-
+    "C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat" x64
+
+    cl main.cpp
+test_script:
+- cmd: main.exe
+artifacts:
+- path: main.exe
