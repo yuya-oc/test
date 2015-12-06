@@ -1,8 +1,16 @@
 dependencies:
   post:
     - g++ main.cpp -o main
-    - tar zcvf /$CIRCLE_ARTIFACTS/main.tar.gz main
+    - tar zcvf $CIRCLE_ARTIFACTS/main.tar.gz main
 
 test:
   override:
     - ./main
+
+deployment:
+  release:
+    tag: /v[0-9]+(\.[0-9]+)*/
+    commands:
+      - wget -q https://github.com/aktau/github-release/releases/download/v0.6.2/linux-amd64-github-release.tar.bz2
+      - tar jxvf linux-amd64-github-release.tar.bz2
+      - linux-amd64-github-release/bin/linux/amd64/github-release --user yuya-oc --repo test-github --tag $CIRCLE_BRANCH --name main.tar.gz --file $CIRCLE_ARTIFACTS/main.tar.gz
